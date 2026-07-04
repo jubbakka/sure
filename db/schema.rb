@@ -381,8 +381,6 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_28_200000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "user_id"
-    t.index ["family_id", "start_date", "end_date"], name: "index_budgets_shared_unique", unique: true, where: "user_id IS NULL"
-    t.index ["family_id", "start_date", "end_date", "user_id"], name: "index_budgets_personal_unique", unique: true, where: "user_id IS NOT NULL"
     t.index ["family_id", "start_date", "end_date", "user_id"], name: "index_budgets_on_family_start_end_user", unique: true
     t.index ["family_id"], name: "index_budgets_on_family_id"
     t.index ["user_id"], name: "index_budgets_on_user_id"
@@ -1511,6 +1509,9 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_28_200000) do
     t.string "currency", null: false
     t.uuid "tag_id"
     t.string "fill_direction", default: "inflows", null: false
+    t.string "color"
+    t.string "icon"
+    t.string "description"
     t.index ["account_id", "tag_id"], name: "index_pockets_on_account_and_tag_unique", unique: true, where: "(tag_id IS NOT NULL)"
     t.index ["account_id"], name: "index_pockets_on_account_id"
     t.index ["tag_id"], name: "index_pockets_on_tag_id"

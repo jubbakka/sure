@@ -148,6 +148,7 @@ class Budget < ApplicationRecord
       .includes(:budget_categories)
       .where("start_date < ?", start_date)
       .where.not(budgeted_spending: nil)
+      .where(user_id: user_id)
       .order(start_date: :desc)
       .first
   end
